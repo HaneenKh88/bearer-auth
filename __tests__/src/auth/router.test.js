@@ -72,7 +72,7 @@ describe('Auth Router', () => {
           .auth('admin', 'xyz')
         const userObject = response.body;
 
-        expect(response.status).toBe(404);
+        expect(response.status).toBe(403);
         expect(userObject.user).not.toBeDefined();
         expect(userObject.token).not.toBeDefined();
 
