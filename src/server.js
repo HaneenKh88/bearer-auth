@@ -24,6 +24,14 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use(authRoutes);
 
+
+app.get('/', HomeHandler);
+
+function  HomeHandler(req, res) 
+ {
+    res.send('Hello World');
+ }
+
 // Catchalls
 app.use(notFound);
 app.use(errorHandler);
