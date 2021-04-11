@@ -20,7 +20,7 @@
 *****************************************************************************************************
 ## Tests passed Image:
 
-![TestImg](https://github.com/HaneenKh88/bearer-auth/blob/dev/UMLLab07.png)
+![TestImg](https://github.com/HaneenKh88/bearer-auth/blob/main/lab07test.png)
 
 
 
