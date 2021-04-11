@@ -5,6 +5,7 @@ process.env.SECRET = "toes";
 const server = require('../../../src/server.js').server;
 const supergoose = require('@code-fellows/supergoose');
 const bearer = require('../../../src/auth/middleware/bearer.js');
+const base64 = require('base-64');
 
 const mockRequest = supergoose(server);
 
@@ -69,13 +70,19 @@ describe('Auth Router', () => {
       it('basic fails with known user and wrong password ', async () => {
 
         const response = await mockRequest.post('/signin')
-          .auth('admin', 'xyz')
+          .set('Authorization', 'xyz')
         const userObject = response.body;
 
         expect(response.status).toBe(403);
         expect(userObject.user).not.toBeDefined();
         expect(userObject.token).not.toBeDefined();
-
+       
+          // const string = 'haneen:1234';
+          // const user = base64.encode(string);
+          // let response = await mockRequest.post('/signin')
+          //   .set(`Authorization`, `Basic ${token}`);
+          // expect(response.body.username).toEqual('haneen');
+          // expect(response.status).toEqual(200);
       });
 
       it('basic fails with unknown user', async () => {
