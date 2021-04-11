@@ -28,9 +28,9 @@
 
 ## .env File:
 
-PORT=3000
-MONGODB_URI=mongodb://localhost:27017/auth
-SECRET=supersecret
+- PORT=3000
+- MONGODB_URI=mongodb://localhost:27017/auth
+- SECRET=supersecret
 
 ****************************************************************************************************
 
