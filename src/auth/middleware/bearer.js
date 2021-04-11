@@ -1,22 +1,28 @@
 'use strict';
-const Users = require('../models/users');
+const users = require('../models/users');
 //  req = {
 //   headers: {
 //     authorization:"Bearer asdasd.asdasd.asdsad"
 //   }
 // }
 module.exports = async (req, res, next) => {
-  if (!req.headers.authorization || !req.headers.authorization === 'Bearer') {
-    next('Invalid Login');
-    return;
-  }
+
   try {
+
+    if (!req.headers.authorization) { _authError() }
+
     const token = req.headers.authorization.split(' ').pop();
-    console.log('__TOKEN__', token);
-    const validUser = await Users.authenticateWithToken(token);
+    const validUser = await users.authenticateWithToken(token);
+
     req.user = validUser;
+    req.token = validUser.token;
     next();
+
   } catch (e) {
-    next('Invalid Login');
+    _authError();
   }
-};
+
+  function _authError() {
+    res.status(403).send('Invalid Login');
+  }
+}
